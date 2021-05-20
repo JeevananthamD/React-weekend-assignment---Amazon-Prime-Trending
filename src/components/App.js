@@ -12,8 +12,8 @@ const App = () => {
     <div>
       <Slide props={slides[Index]}/>
       <div>
-        <button data-testid="button-restart" onClick={() => setIndex(0)} disabled={(Index)?false:true}>Reset</button>
-        <button data-testid="button-prev" onClick={() => setIndex(prevstate => prevstate - 1)} disabled={(Index)?false:true}>Previous</button>
+        <button data-testid="button-restart" onClick={() => setIndex(0)} disabled={(Index)?false:true}>Restart</button>
+        <button data-testid="button-prev" onClick={() => setIndex(prevstate => prevstate - 1)} disabled={(Index)?false:true}>Prev</button>
         <button data-testid="button-next" onClick={() => setIndex(prevstate => prevstate + 1)} disabled={(Index === slides.length-1)?true:false}>Next</button>
       </div>
     </div>
