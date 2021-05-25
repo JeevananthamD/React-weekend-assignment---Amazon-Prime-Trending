@@ -1,37 +1,45 @@
 import React, {Component, useState} from "react";
-import slides from "../data";
 import '../styles/App.css';
-
-
-const App = () => {
-
-  const [Index, setIndex] = useState(0);
-
-  const restar = () => {
-    setIndex(0);
-  }
-
+import Slide from './Slide';
+const App = (props) => {
+  const [data, setdata] = useState(0);
+  const slides = props.slides;
   const prev = () => {
-    setIndex(prevstate => prevstate - 1);
+    if (data >0) {
+      setdata((prev) => prev - 1);
+    }
   }
-
+  const restart = () => {
+    setdata(0);
+  }
   const next = () => {
-    setIndex(prevstate => prevstate + 1);
+    if (data < slides.length - 1) {
+      setdata((prev) => prev + 1);
+    } else {
+      setdata(slides.length-1);
+    }
   }
-
   return (
-    <div className="App">
-      <div id="slide">
-        <h1 data-testid="title">{slides[Index].title}</h1>
-        <p data-testid="text">{slides[Index].text}</p>
+    <>
+      <div>
+      <div className="container m-3">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+              <h1 data-testid="title">{slides[data].title}</h1>
+              <p data-testid="text">{slides[data].text}</p>
+          </div>
+          <div className="d-flex" style={{marginTop:"10rem"}}>
+            <button className="btn btn-secondary btn-sm me-1" data-testid="button-prev" onClick={prev} disabled={data===0?true:false}>Prev</button>
+            <button className="btn btn-secondary btn-sm me-1" data-testid="button-restart" onClick={restart} disabled={data===0?true:false}>Restart</button>
+              <button className="btn btn-secondary btn-sm me-1" data-testid="button-next" onClick={next} disabled={data===slides.length-1?true:false}>Next</button>
+
+          </div>
+        </div>
       </div>
-      <div id="navigation">
-        <button data-testid="button-prev" onClick={prev} disabled={(Index)?false:true}>Prev</button>
-        <button data-testid="button-restart" onClick={restar} disabled={(Index)?false:true}>Restart</button>
-        <button data-testid="button-next" onClick={next} disabled={(Index === slides.length-1)?true:false}>Next</button>
       </div>
-    </div>
+    </>
   )
 }
+
 
 export default App;
