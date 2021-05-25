@@ -26,8 +26,8 @@ const App = () => {
         <p data-testid="text">{slides[Index].text}</p>
       </div>
       <div id="navigation">
-        <button data-testid="button-restart" onClick={restar} disabled={(Index)?false:true}>Restart</button>
         <button data-testid="button-prev" onClick={prev} disabled={(Index)?false:true}>Prev</button>
+        <button data-testid="button-restart" onClick={restar} disabled={(Index)?false:true}>Restart</button>
         <button data-testid="button-next" onClick={next} disabled={(Index === slides.length-1)?true:false}>Next</button>
       </div>
     </div>
